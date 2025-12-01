@@ -1,0 +1,9 @@
+train: D:/DS_With_Gen_Ai/Projects/Deep Learning/helmet-detection/dataset/train/images
+val: D:/DS_With_Gen_Ai/Projects/Deep Learning/helmet-detection/dataset/valid/images
+test: D:/DS_With_Gen_Ai/Projects/Deep Learning/helmet-detection/dataset/test/images
+
+nc: 3
+names:
+  - head
+  - helmet
+  - person
