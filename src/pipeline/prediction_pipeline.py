@@ -17,12 +17,18 @@ class PredictionPipeline:
         except Exception as e:
             raise CustomException(e, sys) from e
 
-    def predict_image(self, image_path: str):
+    def predict_image(self, image_path: str, save_output: bool = True):
         """
         Run prediction on a single image and return bounding boxes + class info.
         """
         try:
-            results = self.model.predict(source=image_path, verbose=False)
+            results = self.model.predict(
+                source=image_path,
+                save=save_output,
+                project="outputs",
+                name="images",
+                verbose=False
+            )
             predictions = []
             for r in results:
                 for box in r.boxes:
@@ -44,8 +50,14 @@ class PredictionPipeline:
         Run prediction on a video and optionally save annotated output.
         """
         try:
-            results = self.model.predict(source=video_path, stream=True, save=save_output,
-                             project="outputs", name="videos", verbose=False)
+            results = self.model.predict(
+                source=video_path,
+                stream=True,
+                save=save_output,
+                project="outputs",
+                name="videos",
+                verbose=False
+            )
             predictions = []
             for r in results:
                 for box in r.boxes:
